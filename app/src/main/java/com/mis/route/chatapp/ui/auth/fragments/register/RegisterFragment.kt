@@ -30,10 +30,6 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
 
                 }
 
-                is RegisterScreenEvents.NavigateToResetPasswordEvent -> {
-
-                }
-
                 else -> {
 
                 }

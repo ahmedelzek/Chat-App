@@ -15,6 +15,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : Fragment
     lateinit var binding: DB
     private var dialog: AlertDialog? = null
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,6 +49,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : Fragment
                 it.onNegButtonClick
             )
         }
+        viewModel
     }
 
     abstract fun initViewModel(): VM

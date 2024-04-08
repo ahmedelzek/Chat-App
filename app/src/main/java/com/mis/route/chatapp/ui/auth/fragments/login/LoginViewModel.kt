@@ -1,4 +1,4 @@
-package com.mis.route.chatapp.ui.auth.fragments.register
+package com.mis.route.chatapp.ui.auth.fragments.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -9,29 +9,27 @@ import com.mis.route.chatapp.model.UserProvider
 import com.mis.route.chatapp.model.ViewMessage
 import kotlinx.coroutines.launch
 
-class RegisterViewModel : BaseViewModel() {
-    private var authRepo: AuthRepo = AuthRepoImpl()
+class LoginViewModel : BaseViewModel() {
     var emailLiveData = MutableLiveData("")
     var passwordLiveData = MutableLiveData("")
-    var userNameLiveData = MutableLiveData("")
     var emailErrorLiveData = MutableLiveData<String?>()
     var passwordErrorLiveData = MutableLiveData<String?>()
-    var userNameErrorLiveData = MutableLiveData<String?>()
-    var events = MutableLiveData<RegisterScreenEvents>()
+    private var authRepo: AuthRepo = AuthRepoImpl()
+    var events = MutableLiveData<LoginScreenEvents>()
 
-    fun register() {
+
+    fun login() {
         if (!validate()) return
         viewModelScope.launch {
             isLoadingLiveData.value = true
             try {
-                val user = authRepo.register(
-                    userNameLiveData.value!!,
+                val user = authRepo.login(
                     emailLiveData.value!!,
                     passwordLiveData.value!!
                 )
                 UserProvider.user = user
                 isLoadingLiveData.value = false
-                events.value = RegisterScreenEvents.NavigateToHomeEvent
+                events.value = LoginScreenEvents.NavigateToHomeEvent
             } catch (e: Exception) {
                 viewMessageLiveData.value = ViewMessage(
                     title = "Error",
@@ -42,14 +40,12 @@ class RegisterViewModel : BaseViewModel() {
         }
     }
 
+    fun createOnClick() {
+        events.value = LoginScreenEvents.NavigateToRegisterEvent
+    }
+
     private fun validate(): Boolean {
         var isValid = true
-        if (userNameLiveData.value.isNullOrEmpty()) {
-            userNameErrorLiveData.value = "Please Enter Valid UserName..!"
-            isValid = false
-        } else {
-            userNameErrorLiveData.value = null
-        }
         if (emailLiveData.value.isNullOrEmpty()) {
             emailErrorLiveData.value = "Please Enter Valid Email..!"
             isValid = false

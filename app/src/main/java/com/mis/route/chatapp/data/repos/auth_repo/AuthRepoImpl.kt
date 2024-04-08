@@ -22,7 +22,10 @@ class AuthRepoImpl : AuthRepo {
     }
 
     override suspend fun login(email: String, password: String): MyUser {
-        Firebase.auth.signInWithEmailAndPassword(email, password)
-        throw Exception("\"not implemented yet\"")
+        val authResult = Firebase.auth.signInWithEmailAndPassword(email, password).await()
+        val docRef =
+            Firebase.firestore.collection(MyUser.COLLECTION_NAME).document(authResult.user!!.uid)
+        val snapshot = docRef.get().await()
+        return snapshot.toObject(MyUser::class.java)!!
     }
 }
