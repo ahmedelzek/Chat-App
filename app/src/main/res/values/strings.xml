@@ -11,6 +11,7 @@
     <string name="or_create_new_account">or create new account</string>
     <string name="username">Username</string>
     <string name="hello_welcome_to_our_char_room">Hello, Welcome to our char room</string>
+    <string name="create">Create</string>
     <string name="join">Join</string>
     <string name="type_a_message">Type a message</string>
     <string name="create_new_room">Create New Room</string>

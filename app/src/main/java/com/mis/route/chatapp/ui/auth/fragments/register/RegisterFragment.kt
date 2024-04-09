@@ -20,19 +20,19 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
     override fun observeToLiveData() {
         super.observeToLiveData()
         viewModel.events.observe(viewLifecycleOwner) {
-            when (it) {
-                is RegisterScreenEvents.NavigateToHomeEvent -> {
-                    val intent = Intent(activity, HomeActivity::class.java)
-                    startActivity(intent)
+            it.let {
+                when (it) {
+                    is RegisterScreenEvents.NavigateToHomeEvent -> {
+                        val intent = Intent(activity, HomeActivity::class.java)
+                        startActivity(intent)
+                    }
+
+                    is RegisterScreenEvents.NavigateToLoginEvent -> {
+
+                    }
                 }
 
-                is RegisterScreenEvents.NavigateToLoginEvent -> {
 
-                }
-
-                else -> {
-
-                }
             }
         }
     }
