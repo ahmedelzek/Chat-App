@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.mis.route.chatapp.ui.chat.ChatActivity" />
+            type="com.mis.route.chatapp.ui.chat.ChatViewModel" />
 
     </data>
 
@@ -79,6 +79,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    android:text="@={vm.messageLiveData}"
                     android:background="@drawable/shape_message_edittext_background"
                     android:hint="@string/type_a_message"
                     android:paddingVertical="8dp"
@@ -92,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/light_blue"
                     android:drawableEnd="@drawable/ic_send"
+                    android:onClick="@{() -> vm.sendMessage()}"
                     android:text="@string/join"
                     android:textSize="18sp"
                     android:textStyle="bold"

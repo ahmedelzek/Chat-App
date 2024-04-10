@@ -5,4 +5,5 @@ import com.mis.route.chatapp.model.Room
 interface RoomRepo {
     suspend fun createRoom(roomName: String, roomCategory: String, roomDescription: String)
     suspend fun getAllRooms(): List<Room>
+    suspend fun sendMessage(message: String, roomId: String)
 }

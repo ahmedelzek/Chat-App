@@ -1,7 +1,10 @@
 package com.mis.route.chatapp.data.repos.room_repo
 
+import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.mis.route.chatapp.model.Room
+import com.mis.route.chatapp.model.RoomMessage
+import com.mis.route.chatapp.model.UserProvider
 import kotlinx.coroutines.tasks.await
 
 class RoomRepoImpl : RoomRepo {
@@ -20,5 +23,19 @@ class RoomRepoImpl : RoomRepo {
         val collection = FirebaseFirestore.getInstance().collection(Room.COLLECTION_ROOM_NAME)
         val querySnapshot = collection.get().await()
         return querySnapshot.toObjects(Room::class.java)
+    }
+
+    override suspend fun sendMessage(message: String, roomId: String) {
+        val roomDoc =
+            FirebaseFirestore.getInstance().collection(Room.COLLECTION_ROOM_NAME).document(roomId)
+        val messageDocRef = roomDoc.collection(RoomMessage.COLLECTION_NAME).document()
+        val roomMessage = RoomMessage(
+            id = messageDocRef.id,
+            senderId = UserProvider.user!!.id!!,
+            senderName = UserProvider.user!!.userName!!,
+            contentMessage = message,
+            date = Timestamp.now()
+        )
+        messageDocRef.set(roomMessage).await()
     }
 }
