@@ -15,4 +15,10 @@ class RoomRepoImpl : RoomRepo {
         val room = Room(docRef.id, roomName, roomCategory, roomDescription)
         docRef.set(room).await()
     }
+
+    override suspend fun getAllRooms(): List<Room> {
+        val collection = FirebaseFirestore.getInstance().collection(Room.COLLECTION_ROOM_NAME)
+        val querySnapshot = collection.get().await()
+        return querySnapshot.toObjects(Room::class.java)
+    }
 }
