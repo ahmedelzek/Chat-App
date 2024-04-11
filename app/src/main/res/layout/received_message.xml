@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="message"
+            type="com.mis.route.chatapp.model.RoomMessage" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/senderMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{message.senderName}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Name" />
+
+        <TextView
+            android:id="@+id/messageContent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_received_message_background"
+            android:paddingHorizontal="22dp"
+            android:paddingVertical="12dp"
+            android:text="@={message.contentMessage}"
+            app:layout_constraintBottom_toTopOf="@id/messageDate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/senderMessage"
+            tools:text="New Test Message " />
+
+        <TextView
+            android:id="@+id/messageDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{message.date.toString()}"
+            app:layout_constraintEnd_toEndOf="@id/messageContent"
+            app:layout_constraintTop_toBottomOf="@id/messageContent"
+            tools:text="12 am" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

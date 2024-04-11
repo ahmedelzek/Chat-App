@@ -2,9 +2,12 @@ package com.mis.route.chatapp.data.repos.room_repo
 
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.snapshots
 import com.mis.route.chatapp.model.Room
 import com.mis.route.chatapp.model.RoomMessage
 import com.mis.route.chatapp.model.UserProvider
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 
 class RoomRepoImpl : RoomRepo {
@@ -38,4 +41,12 @@ class RoomRepoImpl : RoomRepo {
         )
         messageDocRef.set(roomMessage).await()
     }
+
+    override suspend fun startListenMessagesChanges(roomId: String): Flow<List<RoomMessage>> =
+        flow {
+            FirebaseFirestore.getInstance().collection(Room.COLLECTION_ROOM_NAME).document(roomId)
+                .collection(RoomMessage.COLLECTION_NAME).snapshots().collect {
+                    emit(it.toObjects(RoomMessage::class.java))
+                }
+        }
 }

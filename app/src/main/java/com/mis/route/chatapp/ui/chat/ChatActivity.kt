@@ -25,6 +25,7 @@ class ChatActivity : BaseActivity<ChatViewModel, ActivityChatBinding>() {
             intent.getSerializableExtra(ROOM_KEY, Room::class.java)!!
         }
         viewModel.room = room
+        viewModel.startListeningMessages()
     }
 
     override fun initViewModel(): ChatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]

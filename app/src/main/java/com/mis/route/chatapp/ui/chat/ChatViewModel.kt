@@ -1,5 +1,6 @@
 package com.mis.route.chatapp.ui.chat
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mis.route.chatapp.base.BaseViewModel
@@ -24,6 +25,19 @@ class ChatViewModel : BaseViewModel() {
             }
         }
     }
+
+    fun startListeningMessages() {
+        viewModelScope.launch {
+            try {
+                roomRepo.startListenMessagesChanges(room.id).collect {
+                    Log.e("ChatViewModel", "New Flow $it")
+                }
+            } catch (t: Throwable) {
+
+            }
+        }
+    }
+
 
     private fun validate(): Boolean {
         var isValid = true

@@ -7,7 +7,7 @@ data class RoomMessage(
     var senderId: String = "",
     var senderName: String = "",
     var contentMessage: String = "",
-    var date: Timestamp
+    var date: Timestamp = Timestamp.now()
 ) {
     companion object {
         const val COLLECTION_NAME = "message"
