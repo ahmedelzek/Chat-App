@@ -45,7 +45,7 @@ class RoomRepoImpl : RoomRepo {
     override suspend fun startListenMessagesChanges(roomId: String): Flow<List<RoomMessage>> =
         flow {
             FirebaseFirestore.getInstance().collection(Room.COLLECTION_ROOM_NAME).document(roomId)
-                .collection(RoomMessage.COLLECTION_NAME).snapshots().collect {
+                .collection(RoomMessage.COLLECTION_NAME).orderBy("date").snapshots().collect {
                     emit(it.toObjects(RoomMessage::class.java))
                 }
         }
