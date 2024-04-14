@@ -1,6 +1,7 @@
 package com.mis.route.chatapp.data.repos.room_repo
 
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.snapshots
 import com.mis.route.chatapp.model.Room
@@ -49,4 +50,8 @@ class RoomRepoImpl : RoomRepo {
                     emit(it.toObjects(RoomMessage::class.java))
                 }
         }
+
+    override suspend fun logout() {
+        FirebaseAuth.getInstance().signOut()
+    }
 }

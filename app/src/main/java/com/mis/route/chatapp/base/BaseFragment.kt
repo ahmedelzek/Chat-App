@@ -49,24 +49,23 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : Fragment
                 it.onNegButtonClick
             )
         }
-        viewModel
     }
 
     abstract fun initViewModel(): VM
     abstract fun getLayoutId(): Int
 
-    fun showLoading() {
+    private fun showLoading() {
         val builder = AlertDialog.Builder(activity)
         builder.setView(R.layout.dialog_loading)
         dialog = builder.create()
         dialog?.show()
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         dialog?.dismiss()
     }
 
-    fun showDialog(
+    private fun showDialog(
         title: String? = null,
         message: String? = null,
         posButtonTitle: String? = null,

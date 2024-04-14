@@ -34,7 +34,7 @@ class ChatViewModel : BaseViewModel() {
                     messages.value = it
                 }
             } catch (t: Throwable) {
-
+                viewMessageLiveData.value = ViewMessage("Error", t.localizedMessage)
             }
         }
     }

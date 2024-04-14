@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="vm"
             type="com.mis.route.chatapp.ui.chat.ChatViewModel" />
@@ -85,6 +84,7 @@
                     android:background="@drawable/shape_message_edittext_background"
                     android:hint="@string/type_a_message"
                     android:paddingVertical="8dp"
+                    android:paddingHorizontal="15dp"
                     app:layout_constraintTop_toTopOf="@id/send_room_btn"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/send_room_btn"

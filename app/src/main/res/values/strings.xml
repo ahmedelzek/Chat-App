@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">ChatApp</string>
-    <string name="supervised_by_muhammad_nabil">Supervised by Muhammad Nabil</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="supervised_by_muhammad_nabil">Supervised by Ahmed Adel</string>
     <string name="welcome">Welcome back!</string>
     <string name="email">Email</string>
     <string name="password">Password</string>
@@ -20,6 +18,7 @@
     <string name="choose_room_category">Choose Room Category</string>
     <string name="loading">loading</string>
     <string name="send">send</string>
+    <string name="logout">Logout</string>
     <string-array name="rooms_fragments_titles">
         <item>MyRoomsFragment</item>
         <item>AllRoomsFragment</item>

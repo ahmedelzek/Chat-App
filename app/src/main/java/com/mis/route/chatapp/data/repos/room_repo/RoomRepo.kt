@@ -9,4 +9,5 @@ interface RoomRepo {
     suspend fun getAllRooms(): List<Room>
     suspend fun sendMessage(message: String, roomId: String)
     suspend fun startListenMessagesChanges(roomId: String): Flow<List<RoomMessage>>
+    suspend fun logout()
 }

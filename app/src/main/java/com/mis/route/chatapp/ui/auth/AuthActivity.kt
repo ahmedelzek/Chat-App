@@ -12,7 +12,7 @@ class AuthActivity : AppCompatActivity() {
     private var _binding: ActivityAuthBinding? = null
     private val binding: ActivityAuthBinding get() = _binding!!
 
-    lateinit var navController: NavController
+    private lateinit var navController: NavController
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

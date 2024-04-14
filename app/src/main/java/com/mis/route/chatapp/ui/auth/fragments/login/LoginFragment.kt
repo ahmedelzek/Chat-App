@@ -32,6 +32,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginBinding>() {
                     is LoginScreenEvents.NavigateToHomeEvent -> {
                         val intent = Intent(activity, HomeActivity::class.java)
                         startActivity(intent)
+                        activity?.finish()
                     }
 
                     is LoginScreenEvents.NavigateToRegisterEvent -> {

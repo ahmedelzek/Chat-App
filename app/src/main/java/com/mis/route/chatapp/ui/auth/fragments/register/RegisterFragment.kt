@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.mis.route.chatapp.R
 import com.mis.route.chatapp.base.BaseFragment
 import com.mis.route.chatapp.databinding.FragmentRegisterBinding
@@ -28,7 +29,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel, FragmentRegisterBinding
                     }
 
                     is RegisterScreenEvents.NavigateToLoginEvent -> {
-
+                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     }
                 }
 

@@ -40,6 +40,7 @@ class LoginViewModel : BaseViewModel() {
         }
     }
 
+
     fun createOnClick() {
         events.value = LoginScreenEvents.NavigateToRegisterEvent
     }
