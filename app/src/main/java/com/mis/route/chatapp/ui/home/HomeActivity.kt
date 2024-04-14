@@ -51,7 +51,6 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                     finish()
                     true
                 }
-
                 else -> false
             }
         }
@@ -66,5 +65,4 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
             tab.text = tabTitles[position]
         }.attach()
     }
-
 }

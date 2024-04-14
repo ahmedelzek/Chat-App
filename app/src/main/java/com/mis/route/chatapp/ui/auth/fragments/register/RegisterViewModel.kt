@@ -42,6 +42,10 @@ class RegisterViewModel : BaseViewModel() {
         }
     }
 
+    fun goToLogin() {
+        events.value = RegisterScreenEvents.NavigateToLoginEvent
+    }
+
     private fun validate(): Boolean {
         var isValid = true
         if (userNameLiveData.value.isNullOrEmpty()) {

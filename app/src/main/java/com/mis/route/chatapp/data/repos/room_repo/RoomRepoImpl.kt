@@ -54,4 +54,10 @@ class RoomRepoImpl : RoomRepo {
     override suspend fun logout() {
         FirebaseAuth.getInstance().signOut()
     }
+
+    override suspend fun deleteRoom(roomId: String) {
+        FirebaseFirestore.getInstance().collection(Room.COLLECTION_ROOM_NAME).document(roomId)
+            .delete().await()
+    }
+
 }

@@ -19,8 +19,9 @@
     <string name="loading">loading</string>
     <string name="send">send</string>
     <string name="logout">Logout</string>
+    <string name="already_have_account">already have account</string>
     <string-array name="rooms_fragments_titles">
-        <item>MyRoomsFragment</item>
-        <item>AllRoomsFragment</item>
+        <item>MyRooms</item>
+        <item>Browse</item>
     </string-array>
 </resources>

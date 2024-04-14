@@ -9,7 +9,7 @@ import com.mis.route.chatapp.R
 import com.mis.route.chatapp.databinding.RoomItemBinding
 import com.mis.route.chatapp.model.Room
 
-class RoomsAdapter(private var roomsList: List<Room>, val onRoomClicked: (Int, Room) -> Unit) :
+class RoomsAdapter(private var roomsList: List<Room>, val onRoomClicked: (Room) -> Unit) :
     Adapter<RoomsAdapter.RoomViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
@@ -22,7 +22,7 @@ class RoomsAdapter(private var roomsList: List<Room>, val onRoomClicked: (Int, R
     override fun getItemCount(): Int = roomsList.size
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
-        holder.bind(position, roomsList[position])
+        holder.bind(roomsList[position])
     }
 
     fun updateRooms(newRoomsList: List<Room>) {
@@ -31,13 +31,26 @@ class RoomsAdapter(private var roomsList: List<Room>, val onRoomClicked: (Int, R
     }
 
     inner class RoomViewHolder(var binding: RoomItemBinding) : ViewHolder(binding.root) {
-        fun bind(position: Int, room: Room) {
+        fun bind(room: Room) {
             binding.room = room
             binding.executePendingBindings()
             binding.root.setOnClickListener {
-                onRoomClicked.invoke(position, room)
+                onRoomClicked.invoke(room)
             }
-
+            onDeleteClickListener?.let { onDeleteClickListener ->
+                binding.deleteBtn.setOnClickListener {
+                    onDeleteClickListener.onDeleteClick(room)
+                }
+            }
         }
+    }
+
+    interface OnDeleteClickListener {
+        fun onDeleteClick(room: Room)
+    }
+
+    private var onDeleteClickListener: OnDeleteClickListener? = null
+    fun setOnDeleteClickListener(listener: OnDeleteClickListener) {
+        onDeleteClickListener = listener
     }
 }

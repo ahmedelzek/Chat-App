@@ -23,7 +23,13 @@ class MyRoomsViewModel : BaseViewModel() {
                 viewMessageLiveData.value =
                     ViewMessage(title = "Error", message = e.localizedMessage)
             }
+        }
+    }
 
+    fun delete(room: Room) {
+        viewModelScope.launch {
+            repo.deleteRoom(room.id)
+            roomsLiveData.value = repo.getAllRooms()
         }
     }
 }
