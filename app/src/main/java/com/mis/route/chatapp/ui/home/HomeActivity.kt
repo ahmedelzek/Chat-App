@@ -44,6 +44,9 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
     }
 
     private fun onItemNavClicked() {
+        binding.navMenu.setOnClickListener {
+            binding.drawerLayout.open()
+        }
         binding.navigationView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.logout -> {
@@ -51,6 +54,7 @@ class HomeActivity : BaseActivity<HomeViewModel, ActivityHomeBinding>() {
                     finish()
                     true
                 }
+
                 else -> false
             }
         }

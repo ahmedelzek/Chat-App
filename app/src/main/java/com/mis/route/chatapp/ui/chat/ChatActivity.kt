@@ -41,6 +41,9 @@ class ChatActivity : BaseActivity<ChatViewModel, ActivityChatBinding>() {
         viewModel.messages.observe(this) {
             messageAdapter.updateMessagesList(it)
         }
+        binding.backBtn.setOnClickListener {
+            finish()
+        }
     }
 
     override fun initViewModel(): ChatViewModel = ViewModelProvider(this)[ChatViewModel::class.java]

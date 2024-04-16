@@ -18,5 +18,7 @@ fun setImageCategory(imageView: ImageView, category: String?) {
         imageView.setImageResource(R.drawable.image_sports_cat)
     } else if (category.equals("music")) {
         imageView.setImageResource(R.drawable.image_music_cat)
+    } else {
+        imageView.setImageResource(R.drawable.image_room)
     }
 }

@@ -26,7 +26,6 @@ class ChatViewModel : BaseViewModel() {
             }
         }
     }
-
     fun startListeningMessages() {
         viewModelScope.launch {
             try {
